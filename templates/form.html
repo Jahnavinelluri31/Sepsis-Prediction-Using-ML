@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vital Signs</title>
+    <!-- <script>
+        function validateForm() {
+            const hrInput = document.getElementById('hr');
+            const o2satInput = document.getElementById('o2sat');
+            const tempInput = document.getElementById('temp');
+            const mapInput = document.getElementById('map');
+            const respInput = document.getElementById('resp');
+
+            // Validate the Name field
+            if (hrInput.value === '') {
+                alert('HeartRate is required.');
+                return false;
+            }
+
+            // Validate the Email field
+            if (o2satInput.value === '') {
+                alert('Email is required.');
+                return false;
+            } 
+
+            // Validate the Password and Confirm Password fields
+            if (tempInput.value === '') {
+                alert('temperature is required.');
+                return false;
+            } else if (tempInput.value > 50) {
+                alert('temperature must be less than 50.');
+                return false;
+            } 
+
+            if (mapInput.value === '') {
+                alert('map value is required.');
+                return false;
+            }
+
+            if (respInput.value === '') {
+                alert('respiratory value is required.');
+                return false;
+            }
+
+            return true;
+        }
+    </script> -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* background-color: #f2f2f2; */
+        }
+
+        form {
+            width: 50%;
+            margin: auto;
+            padding: 23px;
+            border-radius: 10px;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        h1 {
+            text-align: center;
+            color: rgb(255, 255, 255);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: white;
+        }
+
+        h4 {
+            text-align: center;
+            font-size: 25px;
+            color: rgb(250, 183, 0);
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 7px 7px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        button[type="submit"] {
+            background-color: rgb(9, 94, 35);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .o {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        p {
+            text-align: center;
+            font-size: 60px;
+            color: rgb(255, 255, 255);
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        body {
+            /* background-color: rgb(219, 233, 205); */
+            background-image: url(https://www.news-medical.net/images/Article_Images/ImageForArticle_22572_16533781526443229.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sec">
+        <p>Early Sepsis Detection</p>
+        <form action="{{ url_for('predict')}}" method="post">
+            <!-- <p>Early Sepsis Detection</p> -->
+            <h1>Vital Signs</h1>
+            <label for="hr">HR:</label>
+            <input type="number" id="hr" name="hr" min="-100" max="2" step="0.01" placeholder="Enter heart rate..."
+                required>
+            <label for="o2sat">O2Sat:</label>
+            <input type="number" id="o2sat" name="o2sat" min="-100" max="2" step="0.01"
+                placeholder="Enter oxygen saturation..." required>
+            <label for="temp">Temp:</label>
+            <input type="number" id="temp" name="temp" min="-100" max="2" step="0.01" placeholder="Enter temperature..."
+                required>
+            <label for="map">MAP:</label>
+            <input type="number" id="map" name="map" min="-100" max="2" step="0.01"
+                placeholder="Enter mean of arterial pressure..." required>
+            <label for="resp">RESP:</label>
+            <input type="number" id="resp" name="resp" min="-1000" max="2"" step="0.01"
+                placeholder="Enter respiratory rate..." required>
+            <h1>Clinical Reports</h1>
+            <label for="bun">BUN:</label>
+            <input type="number" id="bun" name="bun" min="-100" max="2" step="0.01" placeholder="Enter heart rate..."
+                required>
+            <label for="Chloride">Chloride:</label>
+            <input type="number" id="Chloride" name="Chloride" min="-100" max="2" step="0.01"
+                placeholder="Enter Chloride content..." required>
+            <label for="Creatinine">Creatinine:</label>
+            <input type="number" id="Creatinine" name="Creatinine" min="-100" max="2" step="0.01"
+                placeholder="Enter Creatinine value..." required>
+            <label for="Glucose">Glucose:</label>
+            <input type="number" id="Glucose" name="Glucose" min="-100" max="2" step="0.01"
+                placeholder="Enter Glucose value..." required>
+            <label for="Hct">Hct:</label>
+            <input type="number" id="Hct" name="Hct" min="-100" max="2" step="0.01" placeholder="Enter Hct..." required>
+            <label for="hHgbr">Hgb:</label>
+            <input type="number" id="Hgb" name="Hgb" min="-100" max="2" step="0.01" placeholder="Enter haemoglobin..."
+                required>
+            <label for="WBC">WBC:</label>
+            <input type="number" id="WBC" name="WBC" min="-100" max="2" step="0.01"
+                placeholder="Enter White Blood Cells..." required>
+            <label for="Platelets">Platelets:</label>
+            <input type="number" id="Platelets" name="Platelets" min="-100" max="2" step="0.01"
+                placeholder="Enter Platelets count..." required>
+            <h1>Demographics</h1>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" min="-100" max="100" step="0.01" placeholder="Enter age...">
+            <label for="Unit1">Unit1:</label>
+            <input type="number" id="Unit1" name="Unit1" min="-100" max="1" step="0.01" placeholder="Enter Unit1...">
+            <label for="Unit2">Unit2:</label>
+            <input type="number" id="Unit2" name="Unit2" min="0" max="1" step="0.01" placeholder="Enter Unit2...">
+            <label for="HospAdmTime">HospAdmTime:</label>
+            <input type="number" id="HospAdmTime" name="HospAdmTime" min="-100" max="100" step="0.01"
+                placeholder="Enter Admit Time...">
+            <label for="ICULOS">ICULOS:</label>
+            <input type="number" id="ICULOS" name="ICULOS" min="-100" max="100" step="0.01"
+                placeholder="Enter ICU Time...">
+            <div class="o">
+                <button type="submit" onclick="validateForm()">Predict</button>
+            </div>
+        </form>
+        <h4><em>{{ prediction_text }}</em></h4>
+    </div>
+</body>
+
+</html>
